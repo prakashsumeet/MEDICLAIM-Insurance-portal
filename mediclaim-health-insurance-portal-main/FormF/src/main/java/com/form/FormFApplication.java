@@ -14,8 +14,4 @@ public class FormFApplication
 }
 
 
-/*
- * adminUser-Password
- * User = adminpragya@gmail.com
- * Password = Admin@123
- */
+
