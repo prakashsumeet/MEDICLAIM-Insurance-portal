@@ -1,0 +1,222 @@
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Serving Web Content</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+   <h1>Welcome to our home page</h1>
+   <h3><a th:href="@{/userlist}">View List of Users</a></h3>
+   <h3><a th:href="@{/login}">Login</a></h3>
+   <h3><a th:href="@{/signup}">SignUp</a></h3>
+   
+   <!-- th:href contains the link of the html page that we want to open through that phrase
+</body>
+</html> -->
+<!-- 
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Home Page</title>
+<style>
+body {
+	background-color: #f5f5f5;
+	margin: 0;
+	padding: 0;
+}
+
+.dashboard {
+	background-color: #5e057e;
+	color: #fff;
+	padding: 40px;
+	text-align: center;
+}
+
+.dashboard_title {
+	font-size: 24px;
+	margin-top: 0;
+}
+
+.dashboard_user {
+	margin-top: 20px;
+}
+
+.dashboard_user_name {
+	font-size: 18px;
+	color: #c299d0;
+}
+
+.span-text {
+	text-align: right;
+	color: black;
+}
+</style>
+</head>
+
+<body>
+	<div class="dashboard">
+		<h1 class="dashboard_title">Welcome to the Dashboard</h1>
+		<div class="dashboard_user">
+			<h2 class="dashboard_user_name"></h2>
+		</div>
+		<div class="span-text">
+			<span style="color: white;"><a th:href="@{/logout}">Logout</a></span>
+		</div>
+	</div>
+
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+	
+<head>
+
+<meta charset="UTF-8">
+
+<title>Home</title>
+
+<style>
+
+body {
+	background-color: #f5f5f5;
+	margin: 0;
+	padding: 0;
+}
+
+.dashboard {
+	background-color: #5e057e;
+	color: #fff;
+	padding: 40px;
+	text-align: center;
+}
+
+.dashboard_title {
+	font-size: 24px;
+	margin-top: 0;
+}
+
+.dashboard_user {
+	margin-top: 20px;
+}
+
+.dashboard_user_name {
+	font-size: 18px;
+	color: #c299d0;
+}
+
+.span-text {
+	color: white;
+	font-size:20px;
+	padding-left: 20px;
+	padding-right: 50px;
+}
+
+table,th, td{
+border:1px solid;
+}
+
+table{
+width:100%;
+}
+
+tbody{
+text-align:center;
+}
+</style>
+
+<script>
+var loadFile = function(event){
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
+</head>
+<body>
+
+<div class="dashboard">
+	<h1 class="dashboard_title">Welcome to the Dash board</h1>
+		<div class="dashboard_user">
+			<h2 class="dashboard_user_name"></h2>
+		</div>
+</div>
+	
+<div class="span-text">
+	<a th:href="@{'/' + logout}">Logout</a>
+</div>
+	
+	<div class="container">
+	<div>
+		<h1><u>List of Users</u></h1>
+	</div>
+	
+	<div class="row"> 
+	
+	
+	<table >
+	<thead>
+	<tr>
+	<th>First Name</th>
+	<th>Last Name</th>
+	<th>Date of birth</th>
+	<th>City</th>
+	<th>State</th>
+	<th>Nationality</th>
+	<th>Gender</th>
+	<th>User name</th>
+	<th>Verified</th>
+	<th>Upload Image</th>
+	<th>Display Image</th>
+	<!-- adding extra -->
+	<th>Delete User</th>
+	
+	</tr>
+	</thead>
+	
+	<tbody>
+	<tr th:each="list : ${users}">
+	
+	<td th:text = "${list.firstname}"></td>
+	<td th:text = "${list.lastname}"></td>
+	<td th:text = "${list.dob}"></td>
+	<td th:text = "${list.city}"></td>
+	<td th:text = "${list.state}"></td>
+	<td th:text = "${list.nationality}"></td>
+	<td th:text = "${list.gender}"></td>
+	<td th:text = "${list.username}"></td>
+	
+	<td >
+	<p th:text = "${list.isVerified}" style="text-transform:capitalize"></p>
+	<a th:if="${list.isVerified == 'pending' || list.isVerified == 'rejected'}" th:href="@{'/user-verified/' + ${list.id} + '/approved'}" style="color:green"> Approved</a>
+	<a th:if="${list.isVerified == 'pending' || list.isVerified == 'approved'}" th:href="@{'/user-verified/' + ${list.id} + '/rejected'}" style="color:red"> Rejected</a>
+	</td>
+	
+	<td>
+	<form  th:action="@{'/uploadimage/' + ${list.id} + '/admin'}"  method="POST" enctype="multipart/form-data" id="fileUploadForm">
+	
+		<input type="file" class="form-control-file" id="imageFile" name="mpf" onChange="form.submit()"  accept="image/jpeg, image/png"/>
+
+	</form>
+	</td> 
+	
+	<td> <img id="output " th:src="${list.imagePath}" width="100" height="100" /> </td>
+	<!-- adding extra -->
+	<td> <a th:href="@{/deleteUser/{id}(id=${list.id})}">Delete</a> </td>
+	
+	
+	
+	</tr>
+	</tbody>
+	</table>
+	
+	<br><br>
+    
+	</div>
+
+	</div>
+</body>
+</html>

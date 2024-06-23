@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<style>
+body {
+	background-color: #f5f5f5;
+	margin: 0;
+	padding: 0;
+}
+
+table,th, td{
+border:1px solid;
+}
+
+table{
+width:100%;
+}
+
+tbody{
+text-align:center;
+}
+</style>
+</head>
+<body>
+<a th:href="@{'/' + logout}">Logout</a>
+<table >
+	<thead>
+	<tr>
+	<th>First Name</th>
+	<th>Last Name</th>
+	<th>Date of birth</th>
+	<th>City</th>
+	<th>State</th>
+	<th>Nationality</th>
+	<th>Gender</th>
+	<th>User name</th>
+	<th>Upload Image</th>
+	<th>Display Image</th>
+	<!-- adding extra -->
+
+	</tr>
+	</thead>
+	
+	<tbody>
+	<tr th:each="list : ${users}">
+	
+	<td th:text = "${list.firstname}"></td>
+	<td th:text = "${list.lastname}"></td>
+	<td th:text = "${list.dob}"></td>
+	<td th:text = "${list.city}"></td>
+	<td th:text = "${list.state}"></td>
+	<td th:text = "${list.nationality}"></td>
+	<td th:text = "${list.gender}"></td>
+	<td th:text = "${list.username}"></td>
+	
+	<td>
+	<form  th:action="@{'/uploadimage/' + ${list.id} + '/user'}"  method="POST" enctype="multipart/form-data" id="fileUploadForm">
+	
+		<input type="file" class="form-control-file" id="imageFile" name="mpf" onChange="form.submit()"  accept="image/jpeg, image/png"/>
+
+	</form>
+	</td> 
+	
+	<td> <img id="output" th:src="'/'+${list.imagePath}" width="100" height="100" /> </td>
+	</tr>
+	</tbody>
+	</table>
+</body>
+</html>

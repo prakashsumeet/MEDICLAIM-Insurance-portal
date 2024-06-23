@@ -1,0 +1,184 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+Hello, welcome to dashboard
+<p class="form-footer">
+Don't have an account? <a th:href="@{/register}">Register </a>  here.
+</p>
+<div>
+<span class="form-footer">Already have an account? 
+<a th:href="@{/login}">Login </a>  here.
+</span>
+</div>
+</body>
+</html>
+  -->
+<!-- 
+<!DOCTYPE html>
+<!-- {% load static %}  
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    .bs-example {
+      margin: 0px;
+    }
+    .bg-dark {
+    background-color: #212529!important;
+}
+    .navbar-brand {
+      font-size: 20px;
+      font-family: monospace;      
+    }
+  </style>
+</head>
+<body>
+  <div class="bs-example">
+    <nav class="navbar navbar-expand-md  navbar-dark fixed-top" style="background-color: #000000;">
+    <a style="color: #ffffff;text-decoration: none; " href="/"><font face = "Gill" size =" 5">Insurance Management System</font><br /></a>  
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+        <div class="navbar-nav">
+          <p style="
+          padding-left: 15px;
+      "  class="nav-item nav-link active"></p>
+          <a href="/customer/customerclick" class="nav-item nav-link">Customer</a>         
+          <a href="/adminlogin" class="nav-item nav-link">Admin</a>
+        </div>
+        <div class="navbar-nav">
+          <a href="/aboutus" class="nav-item nav-link">About Us</a>
+          <a href="/contactus" class="nav-item nav-link">Contact Us</a>          
+        </div>
+      </div>
+    </nav>
+  </div>
+</body>
+</html>   -->  
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>MEDI-CLAIM</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing: border-box;
+font-family: 'Poppins', sans-sarif;
+}
+html,body{
+background-color: #f1e0ff;
+display: flex;
+justify-content: center;
+align-items: flex-start; 
+min-height: 100vh; 
+margin: 0; 
+padding: 20px; 
+}
+.wrapper{
+width: 95%; /* Adjust the width for responsiveness */
+max-width: 800px; /* Set a maximum width to avoid stretching on large screens */
+height:60px;
+width:68vw;
+background:#fff;
+line-height:60px;
+box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+border-radius: 50px;
+overflow: hidden;
+display: flex; /* Ensure contents are displayed in a flex container */
+align-items: center; /* Vertically center contents */
+
+}
+
+.logo {
+  margin-right: 20px; /* Add some space between the logo and the navigation */
+}
+.wrapper nav{
+flex:1;
+position: relative;
+display: flex;
+}
+.wrapper nav a{
+flex: 1;
+text-align: center; /* Center the text */
+width:100%;
+z-index:1;
+position: relative;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+text-decoration:none;
+color:#1d1f20;
+font-weight:500;
+transition: color 0.6s ease;
+/*background: linear-gradient(45deg, #f1e0ff, #dab3ff);*/
+background: linear-gradient(to bottom, #FFD1E8, #FFFFFF);
+transition: 0.6s cubic-bezier(0.68,-0.55, 0.265,1.55)
+}
+.wrapper nav a i{
+font-size:25px;
+margin: 0 7px;
+}
+.wrapper nav #about:checked ~ .tab{
+left:20%;
+}
+.wrapper nav #contact:checked ~ .tab{
+left:40%;
+}
+.wrapper nav #register:checked ~ .tab{
+left:60%;
+}
+.wrapper nav #login:checked ~ .tab{
+left:80%;
+}
+.wrapper nav input{
+display:none;
+}
+* Media query for smaller screens */
+{ @media screen and (max-width: 768px) {
+  .wrapper {
+    width: 100%; /* Occupy full width on smaller screens */
+    border-radius: 0; /* Remove border-radius to avoid curved corners on small screens */
+  }
+}
+}
+</style>
+</head>
+<body>
+<div class="logo">
+<img src="logo.png" alt="Logo">
+</div>
+<h3>MEDICLAIM</h3>
+<div class="wrapper">
+<nav>
+<input type="radio" name="tab" id="home" checked>
+<input type="radio" name="tab" id="about">
+<input type="radio" name="tab" id="contact">
+<input type="radio" name="tab" id="register">
+<input type="radio" name="tab" id="login">
+<a href="#" class="home"><i class="fa fa-home"></i>Home</a>
+<a href="#" class="about"><i class="fa fa-sitemap"></i>About</a>
+<a href="#" class="contact"><i class="fa fa-phone"></i>Contact</a>
+<a href="#" class="register"><i class="fa-solid fa-hospital"></i></i>Insurance</a>
+<a th:href="@{/register}" class="register"><i class="fa fa-book"></i>Register</a>
+<a th:href="@{/login}" class="login"><i class="fa fa-address-book"></i>Login</a>
+<div class="tab"></div>
+</nav>
+</div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>List Users</title>
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+</head>
+<style>
+input[type=text], select, textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	resize: vertical;
+}
+
+/* Style the label to display next to the inputs */
+label {
+	padding: 12px 12px 12px 0;
+	display: inline-block;
+}
+
+/* Style the container */
+.container {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+
+/* Floating column for labels: 25% width */
+.col-25 {
+	float: left;
+	width: 25%;
+	margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+	.col-25, .col-75, input[type=submit] {
+		width: 100%;
+		margin-top: 0;
+	}
+
+	/* For uploading Image*/
+	body {
+		margin: 25px;
+		font-family: verdana;
+	}
+	p {
+		font-size: 12pt;
+		color: black;
+	}
+	canvas {
+		height: 175px;
+		border-style: solid;
+		border-width: 1px;
+		border-color: black;
+	}
+	input {
+		font-family: verdana;
+		font-size: 12pt;
+	}
+}
+</style>
+
+<script>
+	function upload() {
+		var imgcanvas = document.getElementById("canv1");
+		var fileinput = document.getElementById("finput");
+		var image = new SimpleImage(fileinput);
+		image.drawTo(imgcanvas);
+	}
+</script>
+<body>
+	<div class="container">
+		<div>
+			<h1>List of Users</h1>
+		</div>
+
+		<form th:action="@{/userlist}" th:object="${userlist}" method="post">
+			<div class="row">
+
+				<div class="col-25">
+					<label for="id">ID Number</label> <input type="number"
+						th:field="*{id}" />
+				</div>
+
+				<div class="col-25">
+					<label for="fname">First Name</label> <input type="text"
+						th:field="*{firstname}" />
+				</div>
+
+
+				<div class="col-25">
+					<label for="lname">Last Name</label> <input type="text"
+						th:field="*{lastname}" />
+				</div>
+
+				<div class="col-25">
+					<label for="dob">Date of Birth</label> <input type="number"
+						th:field="*{dob}" />
+				</div>
+
+				<div class="col-25">
+					<label for="city">City</label> <input type="text"
+						th:field="*{city}" />
+				</div>
+
+				<div class="col-25">
+					<label for="state">State</label> <input type="text"
+						th:field="*{state}" />
+				</div>
+
+				<div class="col-25">
+					<label for="nationality">Nationality</label> <input type="text"
+						th:field="*{nationality}" />
+				</div>
+
+				<div class="col-25">
+					<label for="gender">Gender</label> <input type="text"
+						th:field="*{gender}" />
+				</div>
+
+				<div class="col-25">
+					<label for="username">Username</label> <input type="email"
+						th:field="*{username}" />
+				</div>
+
+				<canvas id="canv1"></canvas>
+				<p>
+					Filename: <input type="file" multiple="false" accept="image/*"
+						id=finput onchange="upload()">
+				</p>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
+
+<!-- Agkg Agkg@123  -->
